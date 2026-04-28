@@ -8,11 +8,10 @@ pipeline {
             }
         }
 
-        stage('Run Container') {
+        stage('Deploy to Kubernetes') {
             steps {
-                sh 'docker stop my-container || true'
-                sh 'docker rm my-container || true'
-                sh 'docker run -d -p 5010:5000 --name my-container my-devops-app'
+                sh 'kubectl apply -f deployment.yaml'
+                sh 'kubectl apply -f service.yaml'
             }
         }
     }
