@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t my-devops-app .'
@@ -13,9 +12,8 @@ pipeline {
             steps {
                 sh 'docker stop my-container || true'
                 sh 'docker rm my-container || true'
-                sh 'docker run -d -p 5006:5000 --name my-container my-devops-app'
+                sh 'docker run -d -p 5010:5000 --name my-container my-devops-app'
             }
         }
-
     }
 }
